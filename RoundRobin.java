@@ -35,7 +35,7 @@ class RoundRobin {
             p = new Proceso();
             p.pcb = "P" + Integer.toString(i+1);
             p.id = "0" + Integer.toString(i+1);
-            p.instru = 100;
+            p.instru = 20;
             p.estado = "N";
             p.posic = i + 1;
             procesos[i] = p;
