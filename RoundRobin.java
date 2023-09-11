@@ -35,7 +35,7 @@ class RoundRobin {
             p = new Proceso();
             p.pcb = "P" + Integer.toString(i+1);
             p.id = "0" + Integer.toString(i+1);
-            p.instru = 100;
+            p.instru = 10;
             p.estado = "N";
             p.posic = i + 1;
             procesos[i] = p;
@@ -64,7 +64,7 @@ class RoundRobin {
         for(Proceso p : procesos) {
             this.buffer.add("\t" + p.pcb);
         }
-        this.buffer.add("\nID");
+        this.buffer.add("\nID  ");
         for(Proceso p : procesos) {
             this.buffer.add("\t" + p.id);
         }
