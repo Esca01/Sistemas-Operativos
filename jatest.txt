@@ -1,7 +1,7 @@
 Algoritmo de planificación Round Robin
 N(Nuevo) L(Listo) E(Ejecución) T(Terminado)
 Cantidad de procesos: 5
-Quantum: 10
+Quantum: 5
 
 Proceso	P1	P2	P3	P4	P5
 ID  	01	02	03	04	05
@@ -19,28 +19,63 @@ Posic	1	2	3	4	5
 
 Proceso	P1	P2	P3	P4	P5
 ID  	01	02	03	04	05
-Instruc	0	10	10	10	10
+Instruc	5	10	10	10	10
 Estado	E	L	L	L	L
 Posic	1	2	3	4	5
 
 
 Proceso	P1	P2	P3	P4	P5
 ID  	01	02	03	04	05
-Instruc	0	0	10	10	10
+Instruc	5	5	10	10	10
+Estado	L	E	L	L	L
+Posic	1	2	3	4	5
+
+
+Proceso	P1	P2	P3	P4	P5
+ID  	01	02	03	04	05
+Instruc	5	5	5	10	10
+Estado	L	L	E	L	L
+Posic	1	2	3	4	5
+
+
+Proceso	P1	P2	P3	P4	P5
+ID  	01	02	03	04	05
+Instruc	5	5	5	5	10
+Estado	L	L	L	E	L
+Posic	1	2	3	4	5
+
+
+Proceso	P1	P2	P3	P4	P5
+ID  	01	02	03	04	05
+Instruc	5	5	5	5	5
+Estado	L	L	L	L	E
+Posic	1	2	3	4	5
+
+
+Proceso	P1	P2	P3	P4	P5
+ID  	01	02	03	04	05
+Instruc	0	5	5	5	5
+Estado	E	L	L	L	L
+Posic	1	2	3	4	5
+
+
+Proceso	P1	P2	P3	P4	P5
+ID  	01	02	03	04	05
+Instruc	0	0	5	5	5
 Estado	T	E	L	L	L
 Posic	0	1	2	3	4
 
 
 Proceso	P1	P2	P3	P4	P5
 ID  	01	02	03	04	05
-Instruc	0	0	0	10	10
+Instruc	0	0	0	5	5
 Estado	T	T	E	L	L
 Posic	0	0	1	2	3
 
 
 Proceso	P1	P2	P3	P4	P5
 ID  	01	02	03	04	05
-Instruc	0	0	0	0	10
+Instruc	0	0	0	0	5
 Estado	T	T	T	E	L
 Posic	0	0	0	1	2
 

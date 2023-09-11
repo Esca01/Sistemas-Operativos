@@ -10,10 +10,14 @@ class Proceso {
     int instru;     // Número de instrucciones pendientes
     String estado;  // Estado del proceso (N: Nuevo, L: Listo, E: Ejecución, T: Terminado)
     int posic;      // Posición en la cola de listos
+    int tiempoEspera;
+    int tiempoEnSistema;
 
     // Constructor de la clase Proceso
     Proceso() {
         // Inicialización de los atributos del proceso
+        tiempoEspera = 0;
+        tiempoEnSistema = 0;
     }
 }
 
@@ -38,6 +42,8 @@ class RoundRobin {
             p.instru = 10; // Numero de instrucciones pendientes
             p.estado = "N";     // Estado del proceso (N: Nuevo, L: Listo, E: Ejecución, T: Terminado)
             p.posic = i + 1;
+            p.tiempoEspera = 0;
+            p.tiempoEnSistema = 0;
             procesos[i] = p;
         }
         tituloBuffer();
@@ -80,10 +86,18 @@ class RoundRobin {
         for(Proceso p : procesos) {
             this.buffer.add("\t" + Integer.toString(p.posic));
         }
+        this.buffer.add("\nT.espe");
+        for(Proceso p : procesos) {
+            this.buffer.add("\t" + Integer.toString(p.tiempoEspera));
+        }
+        this.buffer.add("\nT.siste");
+        for(Proceso p : procesos) {
+            this.buffer.add("\t" + Integer.toString(p.tiempoEnSistema));
+        } 
         this.buffer.add("\n");
         guardarArchivo();
+             
     }
-
     private void colaListo() {
         for (int i = 0; i < this.n; i++) {
             this.procesos[i].estado = "L";
@@ -96,10 +110,13 @@ class RoundRobin {
             for (Proceso p : procesos) {
                 trabajarProceso(p);
             } 
+            actualizarTiempoEspera();
+            actualizarTiempoEnSistema();
+            reposicionarCola();
+            guardarBuffer();
         }
-        reposicionarCola();
-        guardarBuffer();
     }
+
 
     private void reposicionarCola() {
         int posicion = 0;
@@ -148,6 +165,22 @@ class RoundRobin {
             this.buffer.clear();
         } catch (Exception e) {
             System.out.println("Error al guardar " + this.archivo);
+        }
+    }
+
+   void actualizarTiempoEspera() {
+        for (Proceso p : procesos) {
+            if (p.estado.equals("L")) {
+                p.tiempoEspera += quantum;
+            }
+        }
+    }
+
+    void actualizarTiempoEnSistema() {
+        for (Proceso p : procesos) {
+            if (p.estado.equals("E")) {
+                p.tiempoEnSistema += quantum;
+            }
         }
     }
 }
